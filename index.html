@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -426,25 +426,42 @@ footer{
   .socials{flex-direction:row;justify-content:center;flex-wrap:wrap;}
   .soc{min-width:160px;}
 }
+
+/* ── SCROLL PROGRESS BAR ── */
+#scrollProgress{position:fixed;top:0;left:0;height:3px;z-index:9999;background:linear-gradient(to right,var(--coral),#FF8C00);width:0%;transition:width 0.1s linear;border-radius:0 2px 2px 0;}
+/* ── LANG BUTTON ── */
+.lang-btn{font-size:12px;color:#888;cursor:pointer;letter-spacing:1px;background:none;border:none;padding:4px 8px;font-family:'Syne',sans-serif;font-weight:700;transition:color .2s;}
+.lang-btn:hover{color:var(--dark);}
+/* ── HERO VIDEO ── */
+#heroVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+#heroVideo:not([src]),#heroVideo[src=""]{display:none;}
+#heroVideo:not([src])+.hero-video-overlay,#heroVideo[src=""]+.hero-video-overlay{display:none;}
+.hero-video-overlay{position:absolute;inset:0;background:rgba(10,22,40,0.5);z-index:1;}
+.hero-top,.hero-photo-wrap,.hero-bottom{position:relative;z-index:2;}
+/* ── LANG FADE ── */
+[data-ru]{transition:opacity 0.3s;}
+.lang-fade{opacity:0;}
 </style>
 </head>
 <body>
 
+<div id="scrollProgress"></div>
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">KA<span>.</span></a>
   <div class="nav-right">
-    <span class="nav-pill">42 страны ✈</span>
+    <span class="nav-pill" data-ru="42 страны ✈" data-en="42 countries ✈" data-ru="42 страны ✈" data-en="42 countries ✈">42 страны ✈</span>
+    <button id="langBtn" class="lang-btn">EN</button>
     <div class="nav-menu-btn" id="menuBtn">
       <span></span><span></span><span></span>
     </div>
   </div>
   <!-- desktop nav (hidden on mobile) -->
   <ul class="nav-desktop" style="display:none" id="desktopNav">
-    <li><a href="#about" style="font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:50px;color:var(--dark);text-decoration:none;">О себе</a></li>
-    <li><a href="#countries" style="font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:50px;color:var(--dark);text-decoration:none;">Страны</a></li>
-    <li><a href="#projects" style="font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:50px;color:var(--dark);text-decoration:none;">Проекты</a></li>
-    <li><a href="#contact" style="font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:50px;color:var(--dark);text-decoration:none;">Контакт</a></li>
+    <li><a href="#about" style="font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:50px;color:var(--dark);text-decoration:none;"><span data-ru="О себе" data-en="About">О себе</span></a></li>
+    <li><a href="#countries" style="font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:50px;color:var(--dark);text-decoration:none;"><span data-ru="Страны" data-en="Countries">Страны</span></a></li>
+    <li><a href="#projects" style="font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:50px;color:var(--dark);text-decoration:none;"><span data-ru="Проекты" data-en="Projects">Проекты</span></a></li>
+    <li><a href="#contact" style="font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:50px;color:var(--dark);text-decoration:none;"><span data-ru="Контакт" data-en="Contact">Контакт</span></a></li>
   </ul>
 </nav>
 
@@ -453,19 +470,21 @@ footer{
   <div class="drawer-bg" id="drawerBg"></div>
   <div class="drawer-panel">
     <button class="drawer-close" id="drawerClose">✕</button>
-    <a href="#about" class="drawer-link" onclick="closeDrawer()">О себе <span>→</span></a>
-    <a href="#countries" class="drawer-link" onclick="closeDrawer()">Страны <span>→</span></a>
-    <a href="#projects" class="drawer-link" onclick="closeDrawer()">Проекты <span>→</span></a>
-    <a href="#interests" class="drawer-link" onclick="closeDrawer()">Интересы <span>→</span></a>
-    <a href="#contact" class="drawer-link" onclick="closeDrawer()">Контакт <span>→</span></a>
+    <a href="#about" class="drawer-link" onclick="closeDrawer()"><span data-ru="О себе" data-en="About">О себе</span> <span>→</span></a>
+    <a href="#countries" class="drawer-link" onclick="closeDrawer()"><span data-ru="Страны" data-en="Countries">Страны</span> <span>→</span></a>
+    <a href="#projects" class="drawer-link" onclick="closeDrawer()"><span data-ru="Проекты" data-en="Projects">Проекты</span> <span>→</span></a>
+    <a href="#interests" class="drawer-link" onclick="closeDrawer()"><span data-ru="Интересы" data-en="Interests">Интересы</span> <span>→</span></a>
+    <a href="#contact" class="drawer-link" onclick="closeDrawer()"><span data-ru="Контакт" data-en="Contact">Контакт</span> <span>→</span></a>
     <div style="margin-top:auto;padding-top:2rem;">
-      <a href="https://t.me/+iZXusTPaFOIyYWZi" class="btn btn-coral" style="border-radius:14px;">✈ Telegram канал</a>
+      <a href="https://t.me/+iZXusTPaFOIyYWZi" class="btn btn-coral" style="border-radius:14px;"><span data-ru="✈ Telegram канал" data-en="✈ Telegram Channel">✈ Telegram канал</span></a>
     </div>
   </div>
 </div>
 
 <!-- HERO -->
 <section id="hero">
+  <video id="heroVideo" autoplay muted loop playsinline src=""></video>
+  <div class="hero-video-overlay"></div>
   <div class="blobs">
     <div class="blob b1"></div>
     <div class="blob b2"></div>
@@ -473,18 +492,18 @@ footer{
     <div class="blob b4"></div>
   </div>
   <div class="hero-top">
-    <div class="hero-badge"><span class="badge-dot"></span>Путешественник · Создатель</div>
-    <h1 class="hero-name">
+    <div class="hero-badge"><span class="badge-dot"></span><span data-ru="Путешественник · Создатель" data-en="Traveler · Creator">Путешественник · Создатель</span></div>
+    <h1 class="hero-name" data-ru="КИРИЛЛ<br><span class='outline'>АНДРЕЕВ</span>" data-en="KIRILL<br><span class='outline'>ANDREEV</span>">
       КИРИЛЛ<br>
       <span class="outline">АНДРЕЕВ</span>
     </h1>
-    <p class="hero-sub">
+    <p class="hero-sub" data-ru="Бросил <strong>15 лет карьеры</strong>, чтобы увидеть мир.<br>С одним рюкзаком. Без турагентств." data-en="Left <strong>15 years of career</strong> behind to see the world.<br>One backpack. No travel agencies.">
       Бросил <strong>15 лет карьеры</strong>, чтобы увидеть мир.<br>
       С одним рюкзаком. Без турагентств.
     </p>
     <div class="hero-ctas">
       <a href="https://t.me/+iZXusTPaFOIyYWZi" class="btn btn-coral">✈ Telegram</a>
-      <a href="#projects" class="btn btn-sun">Проекты →</a>
+      <a href="#projects" class="btn btn-sun"><span data-ru="Проекты →" data-en="Projects →">Проекты →</span></a>
     </div>
   </div>
 
@@ -494,124 +513,124 @@ footer{
   </div>
 
   <div class="hero-bottom">
-    <div class="hstat"><div class="hstat-n" data-target="42">0</div><div class="hstat-l">Стран</div></div>
-    <div class="hstat"><div class="hstat-n" data-target="195">0</div><div class="hstat-l">Цель</div></div>
-    <div class="hstat"><div class="hstat-n" data-target="637">0</div><div class="hstat-l">Постов</div></div>
+    <div class="hstat"><div class="hstat-n" data-target="42">0</div><div class="hstat-l" data-ru="Стран" data-en="Countries">Стран</div></div>
+    <div class="hstat"><div class="hstat-n" data-target="195">0</div><div class="hstat-l" data-ru="Цель" data-en="Goal">Цель</div></div>
+    <div class="hstat"><div class="hstat-n" data-target="637">0</div><div class="hstat-l" data-ru="Постов" data-en="Posts">Постов</div></div>
   </div>
 </section>
 
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner">
-    <span class="ti">Испания 🇪🇸</span><span class="ts"> ✦ </span>
-    <span class="ti">Вьетнам 🇻🇳</span><span class="ts"> ✦ </span>
-    <span class="ti">Таиланд 🇹🇭</span><span class="ts"> ✦ </span>
-    <span class="ti">Нидерланды 🇳🇱</span><span class="ts"> ✦ </span>
-    <span class="ti">Венгрия 🇭🇺</span><span class="ts"> ✦ </span>
-    <span class="ti">Чехия 🇨🇿</span><span class="ts"> ✦ </span>
-    <span class="ti">42 страны ✈</span><span class="ts"> ✦ </span>
-    <span class="ti">Один рюкзак 🎒</span><span class="ts"> ✦ </span>
-    <span class="ti">Испания 🇪🇸</span><span class="ts"> ✦ </span>
-    <span class="ti">Вьетнам 🇻🇳</span><span class="ts"> ✦ </span>
-    <span class="ti">Таиланд 🇹🇭</span><span class="ts"> ✦ </span>
-    <span class="ti">Нидерланды 🇳🇱</span><span class="ts"> ✦ </span>
-    <span class="ti">Венгрия 🇭🇺</span><span class="ts"> ✦ </span>
-    <span class="ti">Чехия 🇨🇿</span><span class="ts"> ✦ </span>
-    <span class="ti">42 страны ✈</span><span class="ts"> ✦ </span>
-    <span class="ti">Один рюкзак 🎒</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Испания 🇪🇸" data-en="Spain 🇪🇸">Испания 🇪🇸</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Вьетнам 🇻🇳" data-en="Vietnam 🇻🇳">Вьетнам 🇻🇳</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Таиланд 🇹🇭" data-en="Thailand 🇹🇭">Таиланд 🇹🇭</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Нидерланды 🇳🇱" data-en="Netherlands 🇳🇱">Нидерланды 🇳🇱</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Венгрия 🇭🇺" data-en="Hungary 🇭🇺">Венгрия 🇭🇺</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Чехия 🇨🇿" data-en="Czech Republic 🇨🇿">Чехия 🇨🇿</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="42 страны ✈" data-en="42 countries ✈">42 страны ✈</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Один рюкзак 🎒" data-en="One backpack 🎒">Один рюкзак 🎒</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Испания 🇪🇸" data-en="Spain 🇪🇸">Испания 🇪🇸</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Вьетнам 🇻🇳" data-en="Vietnam 🇻🇳">Вьетнам 🇻🇳</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Таиланд 🇹🇭" data-en="Thailand 🇹🇭">Таиланд 🇹🇭</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Нидерланды 🇳🇱" data-en="Netherlands 🇳🇱">Нидерланды 🇳🇱</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Венгрия 🇭🇺" data-en="Hungary 🇭🇺">Венгрия 🇭🇺</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Чехия 🇨🇿" data-en="Czech Republic 🇨🇿">Чехия 🇨🇿</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="42 страны ✈" data-en="42 countries ✈">42 страны ✈</span><span class="ts"> ✦ </span>
+    <span class="ti" data-ru="Один рюкзак 🎒" data-en="One backpack 🎒">Один рюкзак 🎒</span><span class="ts"> ✦ </span>
   </div>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="sec-label rv">О себе</div>
-  <h2 class="sec-title rv">КТО<br>Я ТАКОЙ</h2>
-  <p class="about-quote rv">«Самый счастливый человек — тот, кто берёт от каждого дня <em>максимум.</em>»</p>
-  <p class="about-bio rv">Уволился с престижной 15-летней работы. Забросил прибыльный бизнес. Всё ради того, чтобы увидеть мир своими глазами — с одним рюкзаком, без турагентств. Официальный фанат ФК Барселона. Верю в добро, позитив и бесконечный потенциал каждого человека.</p>
+  <div class="sec-label rv" data-ru="О себе" data-en="About">О себе</div>
+  <h2 class="sec-title rv" data-ru="КТО<br>Я ТАКОЙ" data-en="WHO<br>I AM">КТО<br>Я ТАКОЙ</h2>
+  <p class="about-quote rv" data-ru="«Самый счастливый человек — тот, кто берёт от каждого дня <em>максимум.</em>»" data-en="&laquo;The happiest person takes the <em>most</em> from every single day.&raquo;">«Самый счастливый человек — тот, кто берёт от каждого дня <em>максимум.</em>»</p>
+  <p class="about-bio rv" data-ru="Уволился с престижной 15-летней работы. Забросил прибыльный бизнес. Всё ради того, чтобы увидеть мир своими глазами — с одним рюкзаком, без турагентств. Официальный фанат ФК Барселона. Верю в добро, позитив и бесконечный потенциал каждого человека." data-en="Quit a prestigious 15-year job. Left a profitable business. All to see the world with my own eyes — one backpack, no travel agencies. Official FC Barcelona fan. I believe in goodness, positivity and the limitless potential of every person.">Уволился с престижной 15-летней работы. Забросил прибыльный бизнес. Всё ради того, чтобы увидеть мир своими глазами — с одним рюкзаком, без турагентств. Официальный фанат ФК Барселона. Верю в добро, позитив и бесконечный потенциал каждого человека.</p>
   <div class="chips rv">
-    <span class="chip">Биохакинг</span>
-    <span class="chip">ЗОЖ</span>
-    <span class="chip">Питание</span>
-    <span class="chip">Долголетие</span>
+    <span class="chip" data-ru="Биохакинг" data-en="Biohacking">Биохакинг</span>
+    <span class="chip" data-ru="ЗОЖ" data-en="Healthy living">ЗОЖ</span>
+    <span class="chip" data-ru="Питание" data-en="Nutrition">Питание</span>
+    <span class="chip" data-ru="Долголетие" data-en="Longevity">Долголетие</span>
     <span class="chip">FC Barcelona</span>
-    <span class="chip">Брендинг</span>
-    <span class="chip">Продукты</span>
-    <span class="chip">Спорт</span>
-    <span class="chip">Обучение</span>
-    <span class="chip">Самореализация</span>
+    <span class="chip" data-ru="Брендинг" data-en="Branding">Брендинг</span>
+    <span class="chip" data-ru="Продукты" data-en="Products">Продукты</span>
+    <span class="chip" data-ru="Спорт" data-en="Sports">Спорт</span>
+    <span class="chip" data-ru="Обучение" data-en="Learning">Обучение</span>
+    <span class="chip" data-ru="Самореализация" data-en="Self-fulfillment">Самореализация</span>
   </div>
 </section>
 
 <!-- STATS -->
 <div id="statsbar">
-  <div class="sbar rv"><div class="sbar-n c1" data-target="42">0</div><div class="sbar-l">Стран посещено</div></div>
-  <div class="sbar rv"><div class="sbar-n c2" data-target="15">0</div><div class="sbar-l">Лет карьеры брошено</div></div>
-  <div class="sbar rv"><div class="sbar-n c3" data-target="637">0</div><div class="sbar-l">Публикаций</div></div>
-  <div class="sbar rv"><div class="sbar-n c4" data-target="1">0</div><div class="sbar-l">Рюкзак на весь мир</div></div>
+  <div class="sbar rv"><div class="sbar-n c1" data-target="42">0</div><div class="sbar-l" data-ru="Стран посещено" data-en="Countries visited">Стран посещено</div></div>
+  <div class="sbar rv"><div class="sbar-n c2" data-target="15">0</div><div class="sbar-l" data-ru="Лет карьеры брошено" data-en="Career years left behind">Лет карьеры брошено</div></div>
+  <div class="sbar rv"><div class="sbar-n c3" data-target="637">0</div><div class="sbar-l" data-ru="Публикаций" data-en="Publications">Публикаций</div></div>
+  <div class="sbar rv"><div class="sbar-n c4" data-target="1">0</div><div class="sbar-l" data-ru="Рюкзак на весь мир" data-en="One bag for the world">Рюкзак на весь мир</div></div>
 </div>
 
 <!-- COUNTRIES -->
 <section id="countries">
-  <div class="sec-label rv">Маршруты</div>
-  <h2 class="sec-title rv">МОИ<br>СТРАНЫ</h2>
+  <div class="sec-label rv" data-ru="Маршруты" data-en="Routes">Маршруты</div>
+  <h2 class="sec-title rv" data-ru="МОИ<br>СТРАНЫ" data-en="MY<br>COUNTRIES">МОИ<br>СТРАНЫ</h2>
   <div class="cc-grid">
-    <div class="cc rv"><span class="cc-flag">🇪🇸</span><div class="cc-info"><div class="cc-name">Испания</div><div class="cc-sub">Barcelona · Madrid</div></div><span class="cc-arr">→</span></div>
-    <div class="cc rv"><span class="cc-flag">🇻🇳</span><div class="cc-info"><div class="cc-name">Вьетнам</div><div class="cc-sub">Phu Quoc · Hanoi</div></div><span class="cc-arr">→</span></div>
-    <div class="cc rv"><span class="cc-flag">🇹🇭</span><div class="cc-info"><div class="cc-name">Таиланд</div><div class="cc-sub">Bangkok · Phuket</div></div><span class="cc-arr">→</span></div>
-    <div class="cc rv"><span class="cc-flag">🇳🇱</span><div class="cc-info"><div class="cc-name">Нидерланды</div><div class="cc-sub">Amsterdam</div></div><span class="cc-arr">→</span></div>
-    <div class="cc rv"><span class="cc-flag">🇭🇺</span><div class="cc-info"><div class="cc-name">Венгрия</div><div class="cc-sub">Budapest</div></div><span class="cc-arr">→</span></div>
-    <div class="cc rv"><span class="cc-flag">🇨🇿</span><div class="cc-info"><div class="cc-name">Чехия</div><div class="cc-sub">Prague · Brno</div></div><span class="cc-arr">→</span></div>
-    <div class="cc rv"><span class="cc-flag">🇹🇷</span><div class="cc-info"><div class="cc-name">Турция</div><div class="cc-sub">Istanbul · Izmir</div></div><span class="cc-arr">→</span></div>
-    <div class="cc rv"><span class="cc-flag">🇨🇳</span><div class="cc-info"><div class="cc-name">Китай</div><div class="cc-sub">Guangzhou · Beijing</div></div><span class="cc-arr">→</span></div>
-    <div class="cc-more rv">🌏 + ещё 34 страны<br><span style="font-size:.7rem;color:#bbb;font-weight:400;">и путешествие продолжается...</span></div>
+    <div class="cc rv"><span class="cc-flag">🇪🇸</span><div class="cc-info"><div class="cc-name" data-ru="Испания" data-en="Spain">Испания</div><div class="cc-sub">Barcelona · Madrid</div></div><span class="cc-arr">→</span></div>
+    <div class="cc rv"><span class="cc-flag">🇻🇳</span><div class="cc-info"><div class="cc-name" data-ru="Вьетнам" data-en="Vietnam">Вьетнам</div><div class="cc-sub">Phu Quoc · Hanoi</div></div><span class="cc-arr">→</span></div>
+    <div class="cc rv"><span class="cc-flag">🇹🇭</span><div class="cc-info"><div class="cc-name" data-ru="Таиланд" data-en="Thailand">Таиланд</div><div class="cc-sub">Bangkok · Phuket</div></div><span class="cc-arr">→</span></div>
+    <div class="cc rv"><span class="cc-flag">🇳🇱</span><div class="cc-info"><div class="cc-name" data-ru="Нидерланды" data-en="Netherlands">Нидерланды</div><div class="cc-sub">Amsterdam</div></div><span class="cc-arr">→</span></div>
+    <div class="cc rv"><span class="cc-flag">🇭🇺</span><div class="cc-info"><div class="cc-name" data-ru="Венгрия" data-en="Hungary">Венгрия</div><div class="cc-sub">Budapest</div></div><span class="cc-arr">→</span></div>
+    <div class="cc rv"><span class="cc-flag">🇨🇿</span><div class="cc-info"><div class="cc-name" data-ru="Чехия" data-en="Czech Republic">Чехия</div><div class="cc-sub">Prague · Brno</div></div><span class="cc-arr">→</span></div>
+    <div class="cc rv"><span class="cc-flag">🇹🇷</span><div class="cc-info"><div class="cc-name" data-ru="Турция" data-en="Turkey">Турция</div><div class="cc-sub">Istanbul · Izmir</div></div><span class="cc-arr">→</span></div>
+    <div class="cc rv"><span class="cc-flag">🇨🇳</span><div class="cc-info"><div class="cc-name" data-ru="Китай" data-en="China">Китай</div><div class="cc-sub">Guangzhou · Beijing</div></div><span class="cc-arr">→</span></div>
+    <div class="cc-more rv" data-ru="🌏 + ещё 34 страны<br><span style='font-size:.7rem;color:#bbb;font-weight:400;'>и путешествие продолжается...</span>" data-en="🌏 + 34 more countries<br><span style='font-size:.7rem;color:#bbb;font-weight:400;'>and the journey continues...</span>">🌏 + ещё 34 страны<br><span style="font-size:.7rem;color:#bbb;font-weight:400;">и путешествие продолжается...</span></div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="sec-label rv">Проекты</div>
-  <h2 class="sec-title rv">ЧТО<br>СОЗДАЮ</h2>
+  <div class="sec-label rv" data-ru="Проекты" data-en="Projects">Проекты</div>
+  <h2 class="sec-title rv" data-ru="ЧТО<br>СОЗДАЮ" data-en="WHAT<br>I CREATE">ЧТО<br>СОЗДАЮ</h2>
   <div class="pj-grid">
     <a href="https://t.me/+iZXusTPaFOIyYWZi" class="pcard rv">
       <div class="pcard-top"><div class="pcard-icon">✈</div><div class="pcard-arrow">↗</div></div>
       <div class="pcard-plat">Telegram</div>
-      <div class="pcard-title">Помощник путешественника</div>
-      <p class="pcard-desc">Советы, маршруты и лайфхаки для самостоятельных путешествий.</p>
+      <div class="pcard-title" data-ru="Помощник путешественника" data-en="Travel Assistant">Помощник путешественника</div>
+      <p class="pcard-desc" data-ru="Советы, маршруты и лайфхаки для самостоятельных путешествий." data-en="Tips, routes and hacks for independent travelers.">Советы, маршруты и лайфхаки для самостоятельных путешествий.</p>
     </a>
     <a href="https://www.instagram.com/andreev032" class="pcard rv">
       <div class="pcard-top"><div class="pcard-icon">📸</div><div class="pcard-arrow">↗</div></div>
       <div class="pcard-plat">Instagram</div>
       <div class="pcard-title">@andreev032</div>
-      <p class="pcard-desc">637 постов. Репортажи из 42 стран, ЗОЖ и биохакинг.</p>
+      <p class="pcard-desc" data-ru="637 постов. Репортажи из 42 стран, ЗОЖ и биохакинг." data-en="637 posts. Reports from 42 countries, healthy living and biohacking.">637 постов. Репортажи из 42 стран, ЗОЖ и биохакинг.</p>
     </a>
     <a href="#" class="pcard rv">
       <div class="pcard-top"><div class="pcard-icon">▶️</div><div class="pcard-arrow">↗</div></div>
       <div class="pcard-plat">YouTube</div>
-      <div class="pcard-title">Видеоблог</div>
-      <p class="pcard-desc">Видеодневники путешествий и обзоры стран.</p>
+      <div class="pcard-title" data-ru="Видеоблог" data-en="Video Blog">Видеоблог</div>
+      <p class="pcard-desc" data-ru="Видеодневники путешествий и обзоры стран." data-en="Travel video diaries and country reviews.">Видеодневники путешествий и обзоры стран.</p>
     </a>
     <a href="#" class="pcard rv">
       <div class="pcard-top"><div class="pcard-icon">✍️</div><div class="pcard-arrow">↗</div></div>
       <div class="pcard-plat">Блог</div>
-      <div class="pcard-title">Статьи и гиды</div>
-      <p class="pcard-desc">Маршруты, бюджетные перелёты и жизнь с одним рюкзаком.</p>
+      <div class="pcard-title" data-ru="Статьи и гиды" data-en="Articles &amp; Guides">Статьи и гиды</div>
+      <p class="pcard-desc" data-ru="Маршруты, бюджетные перелёты и жизнь с одним рюкзаком." data-en="Routes, budget flights and life with one backpack.">Маршруты, бюджетные перелёты и жизнь с одним рюкзаком.</p>
     </a>
   </div>
 </section>
 
 <!-- INTERESTS -->
 <section id="interests">
-  <div class="sec-label rv">Интересы</div>
-  <h2 class="sec-title rv">ЧЕМ<br>ЖИВ</h2>
+  <div class="sec-label rv" data-ru="Интересы" data-en="Interests">Интересы</div>
+  <h2 class="sec-title rv" data-ru="ЧЕМ<br>ЖИВ" data-en="WHAT<br>DRIVES ME">ЧЕМ<br>ЖИВ</h2>
   <div class="int-grid">
-    <div class="icard rv"><span class="icard-icon">✈️</span><div class="icard-name">Путешествия</div><div class="icard-sub">42 страны</div></div>
-    <div class="icard rv"><span class="icard-icon">🧬</span><div class="icard-name">Биохакинг</div><div class="icard-sub">Долголетие</div></div>
-    <div class="icard rv"><span class="icard-icon">🥗</span><div class="icard-name">Питание</div><div class="icard-sub">ЗОЖ</div></div>
-    <div class="icard rv"><span class="icard-icon">⚽</span><div class="icard-name">Барселона</div><div class="icard-sub">Официальный фанат</div></div>
-    <div class="icard rv"><span class="icard-icon">🏋️</span><div class="icard-name">Спорт</div><div class="icard-sub">Разные виды</div></div>
-    <div class="icard rv"><span class="icard-icon">🚀</span><div class="icard-name">Продукты</div><div class="icard-sub">Брендинг</div></div>
-    <div class="icard rv"><span class="icard-icon">📚</span><div class="icard-name">Обучение</div><div class="icard-sub">Постоянно</div></div>
-    <div class="icard rv"><span class="icard-icon">☀️</span><div class="icard-name">Позитив</div><div class="icard-sub">Добро · Вера</div></div>
+    <div class="icard rv"><span class="icard-icon">✈️</span><div class="icard-name" data-ru="Путешествия" data-en="Travel">Путешествия</div><div class="icard-sub" data-ru="42 страны" data-en="42 countries">42 страны</div></div>
+    <div class="icard rv"><span class="icard-icon">🧬</span><div class="icard-name" data-ru="Биохакинг" data-en="Biohacking">Биохакинг</div><div class="icard-sub" data-ru="Долголетие" data-en="Longevity">Долголетие</div></div>
+    <div class="icard rv"><span class="icard-icon">🥗</span><div class="icard-name" data-ru="Питание" data-en="Nutrition">Питание</div><div class="icard-sub" data-ru="ЗОЖ" data-en="Healthy living">ЗОЖ</div></div>
+    <div class="icard rv"><span class="icard-icon">⚽</span><div class="icard-name" data-ru="Барселона" data-en="Barcelona">Барселона</div><div class="icard-sub" data-ru="Официальный фанат" data-en="Official fan">Официальный фанат</div></div>
+    <div class="icard rv"><span class="icard-icon">🏋️</span><div class="icard-name" data-ru="Спорт" data-en="Sports">Спорт</div><div class="icard-sub" data-ru="Разные виды" data-en="Various kinds">Разные виды</div></div>
+    <div class="icard rv"><span class="icard-icon">🚀</span><div class="icard-name" data-ru="Продукты" data-en="Products">Продукты</div><div class="icard-sub" data-ru="Брендинг" data-en="Branding">Брендинг</div></div>
+    <div class="icard rv"><span class="icard-icon">📚</span><div class="icard-name" data-ru="Обучение" data-en="Learning">Обучение</div><div class="icard-sub" data-ru="Постоянно" data-en="Always">Постоянно</div></div>
+    <div class="icard rv"><span class="icard-icon">☀️</span><div class="icard-name" data-ru="Позитив" data-en="Positivity">Позитив</div><div class="icard-sub" data-ru="Добро · Вера" data-en="Goodness · Faith">Добро · Вера</div></div>
   </div>
 </section>
 
@@ -619,14 +638,14 @@ footer{
 <section id="contact">
   <div class="contact-deco">KA</div>
   <div class="contact-inner">
-    <div class="sec-label rv">Связь</div>
-    <h2 class="sec-title rv">НАПИШИ<br>МНЕ!</h2>
-    <p class="contact-sub rv">Сотрудничество, путешествия, проекты — всегда открыт!</p>
+    <div class="sec-label rv" data-ru="Связь" data-en="Contact">Связь</div>
+    <h2 class="sec-title rv" data-ru="НАПИШИ<br>МНЕ!" data-en="LET'S<br>CONNECT">НАПИШИ<br>МНЕ!</h2>
+    <p class="contact-sub rv" data-ru="Сотрудничество, путешествия, проекты — всегда открыт!" data-en="Collaboration, travel, projects — always open!">Сотрудничество, путешествия, проекты — всегда открыт!</p>
     <div class="socials rv">
       <a href="https://t.me/+iZXusTPaFOIyYWZi" class="soc soc-main">✈ Telegram</a>
       <a href="https://www.instagram.com/andreev032" class="soc soc-white">📸 Instagram</a>
       <a href="#" class="soc soc-white">▶ YouTube</a>
-      <a href="#" class="soc soc-white">✍ Блог</a>
+      <a href="#" class="soc soc-white"><span data-ru="✍ Блог" data-en="✍ Blog">✍ Блог</span></a>
     </div>
   </div>
 </section>
@@ -634,7 +653,7 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div class="fl">KA<span>.</span></div>
-  <div class="fc">© 2026 Кирилл Андреев</div>
+  <div class="fc" data-ru="© 2026 Кирилл Андреев" data-en="© 2026 Kirill Andreev">© 2026 Кирилл Андреев</div>
   <div class="fco">42/195 ✈</div>
 </footer>
 
@@ -671,6 +690,42 @@ const rObs=new IntersectionObserver(entries=>{
   });
 },{threshold:0.07,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.rv').forEach(el=>rObs.observe(el));
+
+// Scroll progress bar
+(function(){
+  var bar=document.getElementById('scrollProgress');
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=(h>0?(window.scrollY/h*100):0)+'%';
+  },{passive:true});
+})();
+
+// Language switcher
+(function(){
+  var btn=document.getElementById('langBtn');
+  if(!btn)return;
+  var lang=localStorage.getItem('lang')||'ru';
+  function swap(l){
+    document.querySelectorAll('[data-ru]').forEach(function(el){
+      var txt=el.dataset[l];
+      if(txt!==undefined)el.innerHTML=txt;
+    });
+    btn.textContent=l==='ru'?'EN':'RU';
+    lang=l;
+    localStorage.setItem('lang',l);
+  }
+  function applyLang(l,animate){
+    if(animate){
+      var els=document.querySelectorAll('[data-ru]');
+      els.forEach(function(el){el.classList.add('lang-fade');});
+      setTimeout(function(){swap(l);els.forEach(function(el){el.classList.remove('lang-fade');});},300);
+    } else {
+      swap(l);
+    }
+  }
+  btn.addEventListener('click',function(){applyLang(lang==='ru'?'en':'ru',true);});
+  applyLang(lang,false);
+})();
 </script>
 </body>
 </html>
