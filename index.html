@@ -52,7 +52,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;padding:0 48px;d
 .nav-btn:hover{background:var(--acc-light);transform:scale(.97);}
 
 /* HERO */
-.hero{min-height:100vh;padding:56px 48px 0;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:var(--white);}
+.hero{min-height:100vh;padding:56px 48px 0;display:flex;flex-direction:column;justify-content:flex-start;padding-top:clamp(100px,15vh,160px);position:relative;overflow:hidden;background:var(--white);}
 
 /* Navy corner accent */
 .hero-corner{position:absolute;top:0;right:0;width:45%;height:100%;background:linear-gradient(135deg,transparent 0%,rgba(10,22,40,.03) 100%);pointer-events:none;}
@@ -71,7 +71,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;padding:0 48px;d
 @keyframes slideUp{to{transform:translateY(0);}}
 @keyframes up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
-.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;opacity:0;animation:up .8s 2.7s forwards;position:relative;z-index:2;}
+.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;opacity:0;animation:up .8s 2.7s forwards;position:relative;z-index:2;margin-top:auto;padding-bottom:60px;}
 .hero-sub{font-size:17px;font-weight:300;color:var(--mid);line-height:1.65;letter-spacing:-.2px;max-width:360px;}
 .hero-stats-col{display:flex;flex-direction:column;align-items:flex-end;gap:24px;}
 .hero-stats{display:flex;gap:36px;}
@@ -98,11 +98,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;padding:0 48px;d
 
 /* HERO VIDEO */
 .hero-video-wrap{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;pointer-events:none;z-index:0;}
-.hero-video-wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(to right,var(--white) 25%,rgba(255,255,255,0.15) 65%,rgba(255,255,255,0.05) 100%),linear-gradient(to top,var(--white) 0%,transparent 20%);z-index:1;}
-.hero-video{width:100%;height:100%;object-fit:cover;opacity:.75;}
+.hero-video-wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(to right,var(--white) 22%,rgba(255,255,255,0.15) 60%,rgba(255,255,255,0.05) 100%),linear-gradient(to top,var(--white) 0%,transparent 18%);z-index:1;}
+.hero-video{width:100%;height:100%;object-fit:cover;opacity:.78;}
 @media(max-width:768px){
-  .hero-video{opacity:.45;}
-  .hero-video-wrap::before{background:linear-gradient(to bottom,rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.1) 50%,var(--white) 100%);}
+  .hero-video{opacity:.42;}
+  .hero-video-wrap::before{background:linear-gradient(to bottom,rgba(255,255,255,0.45) 0%,rgba(255,255,255,0.1) 50%,var(--white) 100%);}
 }
 
 /* MARQUEE */
@@ -291,7 +291,7 @@ footer a:hover{color:var(--navy);}
 
   <div class="hero-eyebrow">
     <span class="eyebrow-pill">42 страны</span>
-    <span class="eyebrow-txt">Путешественник · Предприниматель · Медиа</span>
+    <span class="eyebrow-txt">Путешественник · Предприниматель · Тревелблогер</span>
   </div>
 
   <div class="headline">
@@ -304,7 +304,7 @@ footer a:hover{color:var(--navy);}
     <p class="hero-sub">Строю бизнес и личный бренд в путешествиях.<br>Один рюкзак. Без ограничений.</p>
     <div class="hero-stats-col">
       <div class="hero-stats">
-        <div><div class="hst-n" id="s1">0</div><div class="hst-l">Стран</div></div>
+        <div><div class="hst-n" id="s1">0</div><div class="hst-l">Стран посещено</div></div>
         <div><div class="hst-n" id="s2">0</div><div class="hst-l">Лет в бизнесе</div></div>
         <div><div class="hst-n" style="font-size:18px;letter-spacing:-.5px;line-height:1.2;max-width:100px">Самый счастливый</div><div class="hst-l">Человек на свете</div></div>
       </div>
@@ -664,42 +664,13 @@ function closeModal(e){
   var v = document.getElementById('heroVideo');
   if(!v) return;
   v.muted = true;
-
-  function tryPlay(){
-    var p = v.play();
-    if(p !== undefined){ p.catch(function(){}); }
-  }
-
-  // Основной loop через timeupdate — за 0.3с до конца перематываем
-  v.addEventListener('timeupdate', function(){
-    if(v.duration && v.currentTime >= v.duration - 0.3){
-      v.currentTime = 0;
-      tryPlay();
-    }
-  });
-
-  // Backup: событие ended
-  v.addEventListener('ended', function(){
-    v.currentTime = 0;
-    tryPlay();
-  });
-
-  // Backup: если вдруг встало — перезапуск каждые 2 сек
-  setInterval(function(){
-    if(v.paused || v.ended){
-      v.currentTime = 0;
-      tryPlay();
-    }
-  }, 2000);
-
-  // Первый запуск
-  v.addEventListener('loadedmetadata', function(){ tryPlay(); });
+  function tryPlay(){var p=v.play();if(p!==undefined)p.catch(function(){});}
+  v.addEventListener('timeupdate',function(){if(v.duration&&v.currentTime>=v.duration-0.3){v.currentTime=0;tryPlay();}});
+  v.addEventListener('ended',function(){v.currentTime=0;tryPlay();});
+  setInterval(function(){if(v.paused||v.ended){v.currentTime=0;tryPlay();}},2000);
+  v.addEventListener('loadedmetadata',function(){tryPlay();});
   tryPlay();
-
-  // Visibility API — когда вкладка снова активна
-  document.addEventListener('visibilitychange', function(){
-    if(!document.hidden){ tryPlay(); }
-  });
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)tryPlay();});
 })();
 </script>
 
