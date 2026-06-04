@@ -98,11 +98,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;padding:0 48px;d
 
 /* HERO VIDEO */
 .hero-video-wrap{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;pointer-events:none;z-index:0;}
-.hero-video-wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(to right,var(--white) 30%,rgba(255,255,255,0.3) 70%,rgba(255,255,255,0.1) 100%),linear-gradient(to top,var(--white) 0%,transparent 25%);z-index:1;}
-.hero-video{width:100%;height:100%;object-fit:cover;opacity:.55;}
+.hero-video-wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(to right,var(--white) 25%,rgba(255,255,255,0.15) 65%,rgba(255,255,255,0.05) 100%),linear-gradient(to top,var(--white) 0%,transparent 20%);z-index:1;}
+.hero-video{width:100%;height:100%;object-fit:cover;opacity:.75;}
 @media(max-width:768px){
-  .hero-video{opacity:.35;}
-  .hero-video-wrap::before{background:linear-gradient(to bottom,rgba(255,255,255,0.5) 0%,rgba(255,255,255,0.2) 50%,var(--white) 100%);}
+  .hero-video{opacity:.45;}
+  .hero-video-wrap::before{background:linear-gradient(to bottom,rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.1) 50%,var(--white) 100%);}
 }
 
 /* MARQUEE */
@@ -284,7 +284,7 @@ footer a:hover{color:var(--navy);}
   <div class="hero-corner"></div>
   <div class="hero-dot-grid"></div>
   <div class="hero-video-wrap">
-    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
+    <video class="hero-video" id="heroVideo" autoplay muted playsinline preload="auto" webkit-playsinline>
       <source src="https://andreev032.github.io/andreev032/hero.mp4" type="video/mp4">
     </video>
   </div>
@@ -660,26 +660,48 @@ function closeModal(e){
 </script>
 
 <script>
-// iOS video loop fix
-var hv = document.getElementById('heroVideo');
-if(hv){
-  hv.setAttribute('playsinline','');
-  hv.setAttribute('muted','');
-  hv.muted = true;
-  hv.addEventListener('ended', function(){
-    hv.currentTime = 0;
-    hv.play();
-  });
-  hv.addEventListener('loadeddata', function(){
-    hv.play().catch(function(){});
-  });
-  // Keep alive - restart if stalled
-  setInterval(function(){
-    if(hv.paused && !hv.ended){
-      hv.play().catch(function(){});
+(function(){
+  var v = document.getElementById('heroVideo');
+  if(!v) return;
+  v.muted = true;
+
+  function tryPlay(){
+    var p = v.play();
+    if(p !== undefined){ p.catch(function(){}); }
+  }
+
+  // Основной loop через timeupdate — за 0.3с до конца перематываем
+  v.addEventListener('timeupdate', function(){
+    if(v.duration && v.currentTime >= v.duration - 0.3){
+      v.currentTime = 0;
+      tryPlay();
     }
-  }, 3000);
-}
+  });
+
+  // Backup: событие ended
+  v.addEventListener('ended', function(){
+    v.currentTime = 0;
+    tryPlay();
+  });
+
+  // Backup: если вдруг встало — перезапуск каждые 2 сек
+  setInterval(function(){
+    if(v.paused || v.ended){
+      v.currentTime = 0;
+      tryPlay();
+    }
+  }, 2000);
+
+  // Первый запуск
+  v.addEventListener('loadedmetadata', function(){ tryPlay(); });
+  tryPlay();
+
+  // Visibility API — когда вкладка снова активна
+  document.addEventListener('visibilitychange', function(){
+    if(!document.hidden){ tryPlay(); }
+  });
+})();
 </script>
+
 </body>
 </html>
