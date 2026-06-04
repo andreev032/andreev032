@@ -95,6 +95,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;padding:0 48px;d
 /* accent bottom line */
 .hero-line{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--acc) 0%,var(--navy) 50%,transparent 100%);opacity:.6;}
 
+
+/* HERO VIDEO */
+.hero-video-wrap{position:absolute;top:0;right:0;width:42%;height:100%;overflow:hidden;pointer-events:none;}
+.hero-video-wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(to right,var(--white) 0%,transparent 40%),linear-gradient(to top,var(--white) 0%,transparent 30%);z-index:1;}
+.hero-video{width:100%;height:100%;object-fit:cover;opacity:.75;}
+@media(max-width:768px){.hero-video-wrap{width:100%;height:40vh;top:auto;bottom:0;opacity:.3;}}
+
 /* MARQUEE */
 .marquee{overflow:hidden;padding:20px 0;background:var(--navy);border-top:none;}
 .mq-inner{display:flex;animation:mq 14s linear infinite;white-space:nowrap;}
@@ -273,6 +280,11 @@ footer a:hover{color:var(--navy);}
 <section class="hero">
   <div class="hero-corner"></div>
   <div class="hero-dot-grid"></div>
+  <div class="hero-video-wrap">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="https://andreev032.github.io/andreev032/hero.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <div class="hero-eyebrow">
     <span class="eyebrow-pill">42 страны</span>
