@@ -33,6 +33,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--white);color:var(--text);
 /* PRELOADER */
 .preloader{position:fixed;inset:0;background:var(--navy);z-index:8000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;transition:opacity .9s ease,visibility .9s ease;}
 .preloader.done{opacity:0;visibility:hidden;}
+.pre-img{display:none;}
 .pre-logo{font-family:"Playfair Display",serif;font-size:clamp(44px,9vw,88px);font-weight:900;color:#fff;letter-spacing:-3px;opacity:0;animation:preIn .8s .2s forwards;}
 .pre-num{font-size:13px;color:var(--acc);letter-spacing:4px;text-transform:uppercase;font-weight:600;opacity:0;animation:preIn .8s .45s forwards;}
 .pre-bar-wrap{width:120px;height:2px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;opacity:0;animation:preIn .8s .3s forwards;}
@@ -252,21 +253,10 @@ footer a:hover{color:var(--navy);}
 
 <!-- PRELOADER -->
 <div class="preloader" id="pre">
-  <div class="pre-logo">Андреев</div>
+  <div class="pre-logo">Кирилл Андреев</div>
   <div class="pre-bar-wrap"><div class="pre-bar"></div></div>
   <div class="pre-num">@andreev032</div>
 </div>
-
-
-<!-- MUSIC BUTTON -->
-<button class="music-btn" id="musicBtn" onclick="toggleMusic()" title="Музыка">
-  <span class="music-icon">
-    <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-  </span>
-  <span class="music-wave">
-    <span></span><span></span><span></span><span></span><span></span>
-  </span>
-</button>
 
 <!-- NAV -->
 <nav>
@@ -384,8 +374,8 @@ footer a:hover{color:var(--navy);}
 <section class="contact reveal" id="contact">
   <h2 class="contact-h">Давай<br><em>знакомиться</em></h2>
   <div class="contact-r">
-    <button type="button" onclick="var w=window.open();w.location='https://t.me/andreev032';" class="btn-dark" style="border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:500;letter-spacing:-.2px;"><span>Telegram</span></button>
-    <button type="button" onclick="var w=window.open();w.location='https://www.instagram.com/andreev032';" class="btn-out" style="border:1.5px solid rgba(10,22,40,.18);cursor:pointer;background:transparent;font-family:inherit;font-size:14px;font-weight:400;letter-spacing:-.2px;color:var(--navy);padding:16px 28px;border-radius:100px;">Instagram</button>
+    <a href="https://t.me/andreev032" target="_blank" class="btn-dark"><span>Telegram</span></a>
+    <a href="https://www.instagram.com/andreev032" target="_blank" class="btn-out">Instagram</a>
   </div>
 </section>
 
