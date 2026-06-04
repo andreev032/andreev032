@@ -52,7 +52,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;padding:0 48px;d
 .nav-btn:hover{background:var(--acc-light);transform:scale(.97);}
 
 /* HERO */
-.hero{min-height:100vh;padding:56px 48px 0;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:var(--white);}
+.hero{min-height:100vh;padding:56px 48px 0;display:flex;flex-direction:column;justify-content:flex-start;padding-top:clamp(80px,12vh,130px);position:relative;overflow:hidden;background:var(--white);}
 
 /* Navy corner accent */
 .hero-corner{position:absolute;top:0;right:0;width:45%;height:100%;background:linear-gradient(135deg,transparent 0%,rgba(10,22,40,.03) 100%);pointer-events:none;}
@@ -71,8 +71,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;padding:0 48px;d
 @keyframes slideUp{to{transform:translateY(0);}}
 @keyframes up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
-.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;opacity:0;animation:up .8s 2.7s forwards;position:relative;z-index:2;}
-.hero-sub{font-size:17px;font-weight:300;color:var(--mid);line-height:1.65;letter-spacing:-.2px;max-width:360px;}
+.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;opacity:0;animation:up .8s 2.7s forwards;margin-top:auto;padding-bottom:52px;position:relative;z-index:2;}
+.hero-sub{position:relative;z-index:2;font-size:17px;font-weight:300;color:var(--mid);line-height:1.65;letter-spacing:-.2px;max-width:360px;}
 .hero-stats-col{display:flex;flex-direction:column;align-items:flex-end;gap:24px;}
 .hero-stats{display:flex;gap:36px;}
 .hst-n{font-family:"Playfair Display",serif;font-size:44px;font-weight:900;color:var(--navy);letter-spacing:-2px;line-height:1;}
@@ -98,11 +98,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;padding:0 48px;d
 
 /* HERO VIDEO */
 .hero-video-wrap{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;pointer-events:none;z-index:0;}
-.hero-video-wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(to right,var(--white) 20%,rgba(255,255,255,0.12) 58%,rgba(255,255,255,0.04) 100%),linear-gradient(to top,var(--white) 0%,transparent 18%);z-index:1;}
-.hero-video{width:100%;height:100%;object-fit:cover;object-position:top center;opacity:.82;}
+.hero-video-wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(to right,rgba(255,255,255,0.75) 0%,rgba(255,255,255,0.3) 50%,rgba(255,255,255,0.1) 100%),linear-gradient(to top,rgba(255,255,255,0.9) 0%,transparent 30%);z-index:1;}
+.hero-video{width:100%;height:100%;object-fit:cover;object-position:top center;opacity:.9;}
 @media(max-width:768px){
-  .hero-video{opacity:.4;object-position:center center;}
-  .hero-video-wrap::before{background:linear-gradient(to bottom,rgba(255,255,255,0.45) 0%,rgba(255,255,255,0.1) 50%,var(--white) 100%);}
+  .hero-video{opacity:.55;object-position:center center;}
+  .hero-video-wrap::before{background:linear-gradient(to bottom,rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.05) 40%,rgba(255,255,255,0.85) 100%);}
 }
 
 /* MARQUEE */
@@ -290,7 +290,6 @@ footer a:hover{color:var(--navy);}
   </div>
 
   <div class="hero-eyebrow">
-    <span class="eyebrow-pill">42 страны</span>
     <span class="eyebrow-txt">Путешественник · Предприниматель · Тревелблогер</span>
   </div>
 
@@ -304,9 +303,9 @@ footer a:hover{color:var(--navy);}
     <p class="hero-sub">Строю бизнес и личный бренд в путешествиях.<br>Один рюкзак. Без ограничений.</p>
     <div class="hero-stats-col">
       <div class="hero-stats">
-        <div><div class="hst-n" id="s1">0</div><div class="hst-l">Публикаций</div></div>
+        <div><div class="hst-n" id="s1">0</div><div class="hst-l">Стран</div></div>
         <div><div class="hst-n" id="s2">0</div><div class="hst-l">Лет в бизнесе</div></div>
-        <div><div class="hst-n" style="font-size:18px;letter-spacing:-.5px;line-height:1.2;max-width:100px">Самый счастливый</div><div class="hst-l">Человек на свете</div></div>
+        <div><div class="hst-n" style="font-size:18px;letter-spacing:-.5px;line-height:1.2;max-width:100px">Самый счастливый</div><div class="hst-l">человек на свете</div></div>
       </div>
 </div>
   </div>
@@ -448,7 +447,7 @@ const io=new IntersectionObserver(entries=>{
       e.target.classList.add('vis');
       if(!counted&&e.target.id==='s1'){
         counted=true;
-        count(document.getElementById('s1'),637,2000);
+        count(document.getElementById('s1'),42,2000);
         count(document.getElementById('s2'),20,2000);
       }
     }
