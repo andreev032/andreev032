@@ -182,6 +182,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;padding:0 48px;d
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px;}
 .proj-item{background:var(--white);border-radius:20px;padding:28px;text-decoration:none;color:var(--text);display:block;border:1px solid var(--border);transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s,border-color .25s;}
 .proj-item:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(10,22,40,.08);border-color:var(--acc);}
+.proj-item.soon{cursor:default;}
+.proj-item.soon:hover{transform:none;box-shadow:none;border-color:var(--border);}
+.proj-item.soon .proj-link{color:var(--mid);}
 .proj-icon{font-size:26px;margin-bottom:18px;display:block;}
 .proj-name{font-family:"Playfair Display",serif;font-size:20px;font-weight:700;color:var(--navy);letter-spacing:-.5px;margin-bottom:6px;}
 .proj-desc{font-size:13px;color:var(--mid);font-weight:300;line-height:1.6;}
@@ -402,7 +405,7 @@ footer a:hover{color:var(--navy);}
     <a href="https://t.me/like_a_local_bot" target="_blank" class="proj-item"><span class="proj-icon">🤖</span><div class="proj-name">Бот «Как местный»</div><div class="proj-desc">Telegram-бот для путешественников. 195 стран, 20+ инструментов — визы, карты, разговорник и многое другое.</div><div class="proj-link">Открыть бота →</div></a>
     <a href="https://t.me/+iZXusTPaFOIyYWZi" target="_blank" class="proj-item"><span class="proj-icon">✈️</span><div class="proj-name">Канал «Как местный»</div><div class="proj-desc">Telegram-канал о путешествиях. Инсайды, лайфхаки, уголки мира — как рассказал бы местный житель.</div><div class="proj-link">Подписаться →</div></a>
     <a href="https://www.instagram.com/andreev032" target="_blank" class="proj-item"><span class="proj-icon">📸</span><div class="proj-name">Instagram</div><div class="proj-desc">Жизнь, путешествия, бизнес и саморазвитие. Всё как есть, без прикрас.</div><div class="proj-link">@andreev032 →</div></a>
-    <a href="#" class="proj-item"><span class="proj-icon">🎬</span><div class="proj-name">YouTube</div><div class="proj-desc">Влог о путешествиях от первого лица. 20 стран уже отснято — скоро в эфире.</div><div class="proj-link">Скоро →</div></a>
+    <div class="proj-item soon"><span class="proj-icon">🎬</span><div class="proj-name">YouTube</div><div class="proj-desc">Влог о путешествиях от первого лица. 20 стран уже отснято — скоро в эфире.</div><div class="proj-link">Скоро</div></div>
     <a href="https://t.me/like_a_local_bot" target="_blank" class="proj-item"><span class="proj-icon">📖</span><div class="proj-name">Путеводители & Туры</div><div class="proj-desc">Авторские путеводители. Составляю маршруты в любую страну мира. Могу сопроводить лично.</div><div class="proj-link">Написать →</div></a>
     <a href="https://t.me/andreev032" target="_blank" class="proj-item"><span class="proj-icon">🤝</span><div class="proj-name">Сотрудничество</div><div class="proj-desc">Партнёрам, инвесторам и интересным людям — всегда открыт. Пишите напрямую.</div><div class="proj-link">@andreev032 →</div></a>
   </div>
@@ -419,7 +422,7 @@ footer a:hover{color:var(--navy);}
 
 <footer>
   <p>© 2026 Кирилл Андреев</p>
-  <a href="https://andreev032.github.io/andreev032">andreev032.github.io</a>
+  <a href="https://andreevkirill.com/">andreevkirill.com</a>
 </footer>
 
 <!-- MODAL -->
